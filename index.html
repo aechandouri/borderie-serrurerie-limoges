@@ -800,8 +800,27 @@
       display: grid; grid-template-columns: 1fr; gap: 56px;
     }
     @media (min-width: 1080px) { .cta-in { grid-template-columns: 1fr 1fr; align-items: start; } }
-    .ghl { min-height: 780px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(237,233,226,0.07); }
-    .ghl iframe { width: 100%; height: 100%; min-height: 780px; border: none; display: block; }
+    .contact-form {
+      background: var(--card); border: 1px solid rgba(237,233,226,0.07);
+      border-radius: 14px; padding: 40px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; background: rgba(237,233,226,0.04); border: 1px solid rgba(237,233,226,0.10);
+      border-radius: 8px; padding: 14px 16px; color: var(--text); font-family: 'Epilogue', sans-serif;
+      font-size: 15px; transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: rgba(184,84,24,0.5);
+      box-shadow: 0 0 0 3px rgba(184,84,24,0.10);
+    }
+    .form-select { appearance: none; cursor: none; }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
 
     /* ── FOOTER ───────────────────────────────── */
     .footer {
@@ -1308,8 +1327,44 @@
         </a>
       </div>
     </div>
-    <div class="ghl rv rv-d2">
-      <iframe src="https://api.leadconnectorhq.com/widget/form/TxJpsge72vT3ckmik4Cm" style="width:100%;height:100%;min-height:780px;border:none;display:block;" scrolling="no" id="msgsndr-widget" title="Formulaire Borderie Serrurerie"></iframe>
+    <div class="contact-form rv rv-d2">
+      <form action="mailto:borderieserrurerie@gmail.com" method="post" enctype="text/plain">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="prenom">Prénom</label>
+            <input class="form-input" type="text" id="prenom" name="prenom" placeholder="Votre prénom" required autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="nom">Nom</label>
+            <input class="form-input" type="text" id="nom" name="nom" placeholder="Votre nom" required autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="tel">Téléphone</label>
+          <input class="form-input" type="tel" id="tel" name="tel" placeholder="06 XX XX XX XX" required autocomplete="tel" inputmode="tel">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="service">Type de prestation</label>
+          <select class="form-select form-input" id="service" name="service" required>
+            <option value="" disabled selected>Choisir une prestation…</option>
+            <option>Dépannage urgence — porte claquée</option>
+            <option>Serrure / cylindre de sécurité</option>
+            <option>Porte blindée</option>
+            <option>Escalier acier sur mesure</option>
+            <option>Rambarde / garde-corps</option>
+            <option>Portail ou clôture</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="msg">Votre projet</label>
+          <textarea class="form-textarea" id="msg" name="msg" placeholder="Décrivez votre besoin (type de travaux, dimensions, délai souhaité…)"></textarea>
+        </div>
+        <button type="submit" class="btn btn-forge" style="width:100%;justify-content:center;padding:16px 24px;font-size:16px;">
+          Envoyer ma demande
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </form>
     </div>
   </div>
 </section>
@@ -1624,6 +1679,5 @@
 })();
 </script>
 
-<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body>
 </html>
